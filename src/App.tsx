@@ -279,7 +279,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-background selection:bg-primary/10 selection:text-primary overflow-x-hidden">
+    <div className="min-h-screen bg-background selection:bg-primary/10 selection:text-primary overflow-x-hidden bg-dot">
       {/* Scroll Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-primary z-[100] origin-left"
@@ -290,15 +290,44 @@ export default function App() {
       <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
         <motion.div 
           style={{ y: y1 }}
-          className="absolute top-[10%] left-[5%] w-64 h-64 bg-primary/5 rounded-full blur-3xl"
+          animate={{ 
+            scale: [1, 1.1, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{ 
+            duration: 8, 
+            repeat: Infinity,
+            ease: "easeInOut" 
+          }}
+          className="absolute top-[10%] left-[5%] w-64 h-64 bg-primary/10 rounded-full blur-3xl"
         />
         <motion.div 
           style={{ y: y2 }}
-          className="absolute top-[40%] right-[5%] w-96 h-96 bg-primary/5 rounded-full blur-3xl"
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{ 
+            duration: 12, 
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+          className="absolute top-[40%] right-[5%] w-96 h-96 bg-primary/10 rounded-full blur-3xl"
         />
         <motion.div 
           style={{ y: y3 }}
-          className="absolute top-[70%] left-[10%] w-80 h-80 bg-primary/5 rounded-full blur-3xl"
+          animate={{ 
+            scale: [1, 1.15, 1],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{ 
+            duration: 10, 
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+          className="absolute top-[70%] left-[10%] w-80 h-80 bg-primary/10 rounded-full blur-3xl"
         />
       </div>
 
@@ -320,9 +349,10 @@ export default function App() {
               <a 
                 key={link.name} 
                 href={link.href} 
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-all relative group"
               >
                 {link.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
               </a>
             ))}
             <a 
@@ -376,7 +406,7 @@ export default function App() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-40 pb-20 md:pt-56 md:pb-32 overflow-hidden">
+      <section className="relative pt-32 pb-12 md:pt-40 md:pb-20 overflow-hidden bg-grid">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-30">
           <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 rounded-full blur-[120px]" />
           <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px]" />
@@ -396,7 +426,7 @@ export default function App() {
           </motion.div>
           
           <motion.h1 
-            className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8"
+            className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8 text-glow"
             variants={fadeInUp}
           >
             Nikesh <span className="text-primary">Shinde</span>
@@ -446,8 +476,8 @@ export default function App() {
 
       {/* About Section */}
       <section id="about" className="section-padding bg-secondary/30 scroll-mt-24 relative overflow-hidden">
-        <div className="container mx-auto max-w-5xl py-10">
-          <motion.div {...fadeInUp} className="text-center mb-12">
+        <div className="container mx-auto max-w-5xl py-6">
+          <motion.div {...fadeInUp} className="text-center mb-8">
             <motion.h2 variants={revealText} initial="initial" whileInView="whileInView" className="text-3xl md:text-4xl font-bold mb-4">About Me</motion.h2>
             <motion.div 
               initial={{ width: 0 }}
@@ -470,28 +500,28 @@ export default function App() {
               </p>
             </motion.div>
             <motion.div {...fadeInRight} className="grid grid-cols-2 gap-4">
-              <Card className="border-none shadow-sm bg-background/50 backdrop-blur">
+              <Card className="border-none shadow-sm bg-background/50 backdrop-blur card-glow">
                 <CardContent className="p-6 text-center">
                   <Bug className="w-8 h-8 text-primary mx-auto mb-3" />
                   <h3 className="font-bold text-2xl">250+</h3>
                   <p className="text-xs text-muted-foreground uppercase tracking-wider">Defects Found</p>
                 </CardContent>
               </Card>
-              <Card className="border-none shadow-sm bg-background/50 backdrop-blur">
+              <Card className="border-none shadow-sm bg-background/50 backdrop-blur card-glow">
                 <CardContent className="p-6 text-center">
                   <Terminal className="w-8 h-8 text-primary mx-auto mb-3" />
                   <h3 className="font-bold text-2xl">2+</h3>
                   <p className="text-xs text-muted-foreground uppercase tracking-wider">Years Exp</p>
                 </CardContent>
               </Card>
-              <Card className="border-none shadow-sm bg-background/50 backdrop-blur">
+              <Card className="border-none shadow-sm bg-background/50 backdrop-blur card-glow">
                 <CardContent className="p-6 text-center">
                   <CheckCircle2 className="w-8 h-8 text-primary mx-auto mb-3" />
                   <h3 className="font-bold text-2xl">100+</h3>
                   <p className="text-xs text-muted-foreground uppercase tracking-wider">Test Cases</p>
                 </CardContent>
               </Card>
-              <Card className="border-none shadow-sm bg-background/50 backdrop-blur">
+              <Card className="border-none shadow-sm bg-background/50 backdrop-blur card-glow">
                 <CardContent className="p-6 text-center">
                   <Users className="w-8 h-8 text-primary mx-auto mb-3" />
                   <h3 className="font-bold text-2xl">Agile</h3>
@@ -506,7 +536,7 @@ export default function App() {
       {/* Skills Section */}
       <section id="skills" className="section-padding scroll-mt-24 relative">
         <div className="container mx-auto">
-          <motion.div {...fadeInUp} className="text-center mb-16">
+          <motion.div {...fadeInUp} className="text-center mb-10">
             <motion.h2 variants={revealText} initial="initial" whileInView="whileInView" className="text-3xl md:text-4xl font-bold mb-4">Skills & Expertise</motion.h2>
             <motion.div 
               initial={{ width: 0 }}
@@ -584,7 +614,7 @@ export default function App() {
               >
                 {skills.soft.map((skill) => (
                   <motion.div key={skill} variants={fadeInUp}>
-                    <Card className="border-none shadow-sm bg-secondary/50 h-full">
+                    <Card className="border-none shadow-sm bg-secondary/50 h-full card-glow">
                       <CardContent className="p-6 flex items-center gap-3">
                         <CheckCircle2 className="text-primary w-5 h-5 flex-shrink-0" />
                         <span className="font-medium">{skill}</span>
@@ -601,7 +631,7 @@ export default function App() {
       {/* Experience Section */}
       <section id="experience" className="section-padding bg-secondary/30 scroll-mt-24">
         <div className="container mx-auto max-w-4xl">
-          <motion.div {...fadeInUp} className="text-center mb-16">
+          <motion.div {...fadeInUp} className="text-center mb-10">
             <motion.h2 variants={revealText} initial="initial" whileInView="whileInView" className="text-3xl md:text-4xl font-bold mb-4">Work Experience</motion.h2>
             <motion.div 
               initial={{ width: 0 }}
@@ -629,7 +659,7 @@ export default function App() {
                   <Briefcase size={18} />
                 </div>
                 {/* Content */}
-                <Card className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] border-none shadow-md hover:shadow-lg transition-shadow">
+                <Card className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] border-none shadow-md hover:shadow-lg transition-shadow card-glow">
                   <CardHeader className="pb-2">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
                       <Badge variant="outline" className="w-fit">{exp.duration}</Badge>
@@ -657,7 +687,7 @@ export default function App() {
       {/* Projects Section */}
       <section id="projects" className="section-padding scroll-mt-24">
         <div className="container mx-auto">
-          <motion.div {...fadeInUp} className="text-center mb-16">
+          <motion.div {...fadeInUp} className="text-center mb-10">
             <motion.h2 variants={revealText} initial="initial" whileInView="whileInView" className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</motion.h2>
             <motion.div 
               initial={{ width: 0 }}
@@ -681,7 +711,7 @@ export default function App() {
                 whileHover={{ y: -10, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                <Card className="h-full flex flex-col border-none shadow-md hover:shadow-2xl transition-all overflow-hidden group">
+                <Card className="h-full flex flex-col border-none shadow-md hover:shadow-2xl transition-all overflow-hidden group card-glow">
                   <div className="h-48 bg-primary/5 flex items-center justify-center relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent" />
                     <Bug className="w-16 h-16 text-primary/20 group-hover:scale-110 transition-transform duration-500" />
@@ -716,7 +746,7 @@ export default function App() {
       {/* Testimonials Section */}
       <section id="testimonials" className="section-padding bg-secondary/30 scroll-mt-24">
         <div className="container mx-auto">
-          <motion.div {...fadeInUp} className="text-center mb-16">
+          <motion.div {...fadeInUp} className="text-center mb-10">
             <motion.h2 variants={revealText} initial="initial" whileInView="whileInView" className="text-3xl md:text-4xl font-bold mb-4">Testimonials</motion.h2>
             <motion.div 
               initial={{ width: 0 }}
@@ -741,7 +771,7 @@ export default function App() {
                 key={index}
                 variants={fadeInUp}
               >
-                <Card className="h-full border-none shadow-md bg-background relative overflow-hidden group hover:shadow-lg transition-shadow">
+                <Card className="h-full border-none shadow-md bg-background relative overflow-hidden group hover:shadow-lg transition-shadow card-glow">
                   <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                     <Quote size={64} className="text-primary" />
                   </div>
@@ -769,13 +799,13 @@ export default function App() {
           <div className="grid md:grid-cols-2 gap-12">
             {/* Education */}
             <motion.div {...fadeInLeft}>
-              <div className="flex items-center gap-3 mb-8">
+              <div className="flex items-center gap-3 mb-6">
                 <div className="p-2 bg-primary/10 rounded-lg text-primary">
                   <GraduationCap size={24} />
                 </div>
                 <h2 className="text-2xl font-bold">Education</h2>
               </div>
-              <Card className="border-none shadow-sm hover:shadow-md transition-shadow">
+              <Card className="border-none shadow-sm hover:shadow-md transition-shadow card-glow">
                 <CardHeader>
                   <div className="flex justify-between items-start mb-2">
                     <Badge>2025</Badge>
@@ -788,7 +818,7 @@ export default function App() {
 
             {/* Certifications */}
             <motion.div {...fadeInRight}>
-              <div className="flex items-center gap-3 mb-8">
+              <div className="flex items-center gap-3 mb-6">
                 <div className="p-2 bg-primary/10 rounded-lg text-primary">
                   <Award size={24} />
                 </div>
@@ -803,7 +833,7 @@ export default function App() {
               >
                 {certifications.map((cert, index) => (
                   <motion.div key={index} variants={fadeInUp}>
-                    <Card className="border-none shadow-sm hover:shadow-md transition-shadow">
+                    <Card className="border-none shadow-sm hover:shadow-md transition-shadow card-glow">
                       <CardHeader className="p-4">
                         <div className="flex justify-between items-center mb-1">
                           <span className="text-xs font-medium text-muted-foreground">{cert.date}</span>
@@ -824,8 +854,8 @@ export default function App() {
       <section id="resume" className="section-padding bg-primary text-primary-foreground">
         <div className="container mx-auto max-w-4xl text-center">
           <motion.div {...scaleIn}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to work together?</h2>
-            <p className="text-primary-foreground/80 mb-10 text-lg max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to work together?</h2>
+            <p className="text-primary-foreground/80 mb-8 text-lg max-w-2xl mx-auto">
               Download my full resume to see a detailed breakdown of my experience, certifications, and technical skills.
             </p>
             <a 
@@ -842,7 +872,7 @@ export default function App() {
       {/* Contact Section */}
       <section id="contact" className="section-padding scroll-mt-24">
         <div className="container mx-auto max-w-5xl">
-          <motion.div {...fadeInUp} className="text-center mb-16">
+          <motion.div {...fadeInUp} className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
             <div className="w-20 h-1.5 bg-primary mx-auto rounded-full" />
             <p className="mt-6 text-muted-foreground max-w-lg mx-auto">

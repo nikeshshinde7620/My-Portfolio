@@ -84,5 +84,31 @@
 }
 
 .section-padding {
-  @apply py-20 px-6 md:px-12 lg:px-24;
+  @apply py-12 px-6 md:py-16 md:px-12 lg:px-24;
+}
+
+.bg-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, oklch(0.25 0.05 250 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.25 0.05 250 / 0.05) 1px, transparent 1px);
+}
+
+.bg-dot {
+  background-image: radial-gradient(oklch(0.25 0.05 250 / 0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.text-glow {
+  text-shadow: 0 0 20px oklch(0.25 0.05 250 / 0.3);
+}
+
+.card-glow {
+  box-shadow: 0 0 30px oklch(0.25 0.05 250 / 0.05);
+  transition: all 0.3s ease;
+}
+
+.card-glow:hover {
+  box-shadow: 0 0 40px oklch(0.25 0.05 250 / 0.15);
+  transform: translateY(-4px);
 }
