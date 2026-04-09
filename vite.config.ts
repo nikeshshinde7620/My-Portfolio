@@ -5,8 +5,12 @@ import {defineConfig, loadEnv} from 'vite';
 
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
+  
+  // Use '/' for Vercel/Local, and repo name for GitHub Pages
+  const base = process.env.GITHUB_ACTIONS ? '/view-my-portfolio/' : '/';
+
   return {
-    base: '/view-my-portfolio/', // Updated for your new repository name
+    base,
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
